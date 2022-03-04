@@ -1,0 +1,3 @@
+C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\Definitions.HowlOfIron.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h

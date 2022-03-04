@@ -1,0 +1,2 @@
+C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\Definitions.HowlOfIron.h
+C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Source\HowlOfIron\HowlOfIron.h

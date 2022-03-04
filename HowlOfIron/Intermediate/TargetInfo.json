@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "HowlOfIron",
+			"Path": "C:\\Users\\guillermo.suarez\\OneDrive - U-tad\\Desktop\\HowlOfIron\\Source\\HowlOfIron.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "HowlOfIronEditor",
+			"Path": "C:\\Users\\guillermo.suarez\\OneDrive - U-tad\\Desktop\\HowlOfIron\\Source\\HowlOfIronEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
