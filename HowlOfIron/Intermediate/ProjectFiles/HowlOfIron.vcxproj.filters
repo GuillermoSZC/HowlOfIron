@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\HowlOfIron.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{602E6031-D3DB-41E4-BA03-95B5CE08C116}</UniqueIdentifier>
+      <UniqueIdentifier>{80F9DD80-B998-4FA0-9FC4-ECB352436596}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\HowlOfIron.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{1B57855B-3DC1-4BC3-AB11-25FBBFB8440C}</UniqueIdentifier>
+      <UniqueIdentifier>{6DF6FB0C-57AE-4794-A42F-546B5B9756FB}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\HowlOfIron">
-      <UniqueIdentifier>{B2BF26F4-3ADE-4A82-A9C5-724B034827CB}</UniqueIdentifier>
+      <UniqueIdentifier>{155D2E0C-E4AE-44B4-84B2-16CB770C8C2A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\HowlOfIron\HowlOfIron.Build.cs">
       <Filter>Source\HowlOfIron</Filter>
