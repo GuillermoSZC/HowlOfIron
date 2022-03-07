@@ -51,7 +51,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{FF6AC705-B603-45DC-A498-B00E5E29F9E4}</ProjectGuid>
+    <ProjectGuid>{66E72B62-E224-46A3-9F5B-2B55C5B313EC}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
     <RootNamespace>HowlOfIron</RootNamespace>
     <PlatformToolset>v142</PlatformToolset>
