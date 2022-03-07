@@ -58,6 +58,14 @@ void AHowlOfIronCharacter::BeginPlay()
 	{
 		const UAttributeSet* Attrs = AbilitySystem->InitStats(UPlayerAttributes::StaticClass(), AttrDataTable);
 	}
+	if (bAttDebugging)
+	{
+		for (size_t i = 0; i < DebuggingPassiveAbilities.Num(); ++i)
+		{
+			FGameplayAbilitySpecHandle SpecHandle = AbilitySystem->GiveAbility(FGameplayAbilitySpec(DebuggingPassiveAbilities[i].GetDefaultObject(), 1, 0));
+			AbilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
+		}
+	}
 }
 
 void AHowlOfIronCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)

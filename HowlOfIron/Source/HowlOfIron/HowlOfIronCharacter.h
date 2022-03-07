@@ -43,6 +43,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Abilities")
 		UDataTable* AttrDataTable;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities | Debugging")
+		bool bAttDebugging;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities | Debugging")
+		TArray<TSubclassOf<class UGameplayAbility>> DebuggingPassiveAbilities;
+
 protected:
 
 	/** Resets HMD orientation in VR. */
