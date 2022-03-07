@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\HowlOfIron.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{27794AFB-D506-460A-91A0-C5280E5CA905}</UniqueIdentifier>
+      <UniqueIdentifier>{C3BA17A6-B312-4DB7-B252-575FCC74671A}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\HowlOfIron.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{C16FD60C-7513-4732-8690-20AA0A1A9D1A}</UniqueIdentifier>
+      <UniqueIdentifier>{FF8E09F5-99FF-4006-8783-8512B748ED19}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\HowlOfIron">
-      <UniqueIdentifier>{E8B5ECA4-CC4E-4635-B194-59C3B7B7CE3A}</UniqueIdentifier>
+      <UniqueIdentifier>{E06A7567-7AE2-4C14-B6F5-715CBAB70A4E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\HowlOfIron\HowlOfIron.Build.cs">
       <Filter>Source\HowlOfIron</Filter>
@@ -51,6 +51,12 @@
       <Filter>Source\HowlOfIron</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\HowlOfIron\HowlOfIronGameMode.h">
+      <Filter>Source\HowlOfIron</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\HowlOfIron\PlayerAttributes.cpp">
+      <Filter>Source\HowlOfIron</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\HowlOfIron\PlayerAttributes.h">
       <Filter>Source\HowlOfIron</Filter>
     </ClInclude>
   </ItemGroup>

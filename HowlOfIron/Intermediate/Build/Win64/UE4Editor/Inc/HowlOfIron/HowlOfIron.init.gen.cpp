@@ -21,8 +21,8 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIron_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0x0DBA6167,
-				0x3FEC1CEB,
+				0xBC69BDBB,
+				0x4B334AE8,
 				METADATA_PARAMS(nullptr, 0)
 			};
 			UE4CodeGen_Private::ConstructUPackage(ReturnPackage, PackageParams);
