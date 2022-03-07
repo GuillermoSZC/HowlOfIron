@@ -1,24 +1,3 @@
 ﻿  Using 'git status' to determine working set for adaptive non-unity build (C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron).
-  Parsing headers for HowlOfIronEditor
-    Running UnrealHeaderTool "C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\HowlOfIron.uproject" "C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\HowlOfIronEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -abslog="C:\Users\guillermo.suarez\AppData\Local\UnrealBuildTool\Log_UHT.txt" -installed
-  LogInit: Display: Loading text-based GConfig....
-  Reflection code generated for HowlOfIronEditor in 4,9933146 seconds
-  Building HowlOfIronEditor...
-  Using Visual Studio 2019 14.28.29915 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29910) and Windows 10.0.19041.0 SDK (C:\Program Files (x86)\Windows Kits\10).
-  Building 6 actions with 36 processes...
-    [1/6] HowlOfIron.init.gen.cpp
-    [2/6] PlayerAttributes.cpp
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\PlayerAttributes.cpp(8): warning C4996: UProperty has been renamed to FProperty Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile.
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\PlayerAttributes.cpp(8): warning C4996: UProperty has been renamed to FProperty Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile.
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\PlayerAttributes.cpp(14): warning C4996: UProperty has been renamed to FProperty Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile.
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\PlayerAttributes.cpp(14): warning C4996: UProperty has been renamed to FProperty Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile.
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\PlayerAttributes.cpp(20): warning C4996: UProperty has been renamed to FProperty Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile.
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\PlayerAttributes.cpp(20): warning C4996: UProperty has been renamed to FProperty Please update your code to the new API before upgrading to the next release, otherwise your project will no longer compile.
-    [3/6] PlayerAttributes.gen.cpp
-    [4/6] UE4Editor-HowlOfIron-0001.lib
-       Creating library C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\UE4Editor-HowlOfIron-0001.lib and object C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\UE4Editor-HowlOfIron-0001.exp
-    [5/6] UE4Editor-HowlOfIron-0001.dll
-       Creating library C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\UE4Editor-HowlOfIron-0001.suppressed.lib and object C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\UE4Editor-HowlOfIron-0001.suppressed.exp
-    [6/6] HowlOfIronEditor.target
-  Total time in Parallel executor: 2,06 seconds
-  Total execution time: 7,71 seconds
+  Target is up to date
+  Total execution time: 0,47 seconds
