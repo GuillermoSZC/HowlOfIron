@@ -65,6 +65,11 @@ void AHowlOfIronCharacter::BeginPlay()
 			FGameplayAbilitySpecHandle SpecHandle = AbilitySystem->GiveAbility(FGameplayAbilitySpec(DebuggingPassiveAbilities[i].GetDefaultObject(), 1, 0));
 			AbilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
 		}
+        for (size_t i = 0; i < StartingPassiveAbilities.Num(); ++i)
+        {
+            FGameplayAbilitySpecHandle SpecHandle = AbilitySystem->GiveAbility(FGameplayAbilitySpec(DebuggingPassiveAbilities[i].GetDefaultObject(), 1, 0));
+            AbilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
+        }
 	}
 }
 
