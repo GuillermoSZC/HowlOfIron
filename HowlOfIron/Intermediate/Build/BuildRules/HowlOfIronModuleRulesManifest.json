@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\HowlOfIron\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIron\\HowlOfIron.Build.cs",
-		"D:\\HowlOfIron\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIron.Target.cs",
-		"D:\\HowlOfIron\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIronEditor.Target.cs"
+		"C:\\Users\\guillermo.suarez\\Documents\\GitHub\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIron\\HowlOfIron.Build.cs",
+		"C:\\Users\\guillermo.suarez\\Documents\\GitHub\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIron.Target.cs",
+		"C:\\Users\\guillermo.suarez\\Documents\\GitHub\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIronEditor.Target.cs"
 	],
-	"EngineVersion": "4.27.0"
+	"EngineVersion": "4.27.2"
 }

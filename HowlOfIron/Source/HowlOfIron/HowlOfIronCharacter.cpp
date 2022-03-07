@@ -43,12 +43,30 @@ AHowlOfIronCharacter::AHowlOfIronCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+    AbilitySystem = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystem"));
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
 
 //////////////////////////////////////////////////////////////////////////
 // Input
+
+void AHowlOfIronCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	if (AbilitySystem && AttrDataTable)
+	{
+		const UAttributeSet* Attrs = AbilitySystem->InitStats(UPlayerAttributes::StaticClass(), AttrDataTable);
+	}
+	if (bAttDebugging)
+	{
+		for (size_t i = 0; i < DebuggingPassiveAbilities.Num(); ++i)
+		{
+			FGameplayAbilitySpecHandle SpecHandle = AbilitySystem->GiveAbility(FGameplayAbilitySpec(DebuggingPassiveAbilities[i].GetDefaultObject(), 1, 0));
+			AbilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
+		}
+	}
+}
 
 void AHowlOfIronCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
@@ -75,7 +93,6 @@ void AHowlOfIronCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AHowlOfIronCharacter::OnResetVR);
 }
-
 
 void AHowlOfIronCharacter::OnResetVR()
 {

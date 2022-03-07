@@ -32,20 +32,21 @@
 /wd4244
 /wd4838
 /I .
-/I "C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Inc\HowlOfIron"
-/I "C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Source"
+/I ..\Plugins\Runtime\GameplayAbilities\Intermediate\Build\Win64\UE4Editor\Inc\GameplayAbilities
+/I ..\Plugins\Runtime\GameplayAbilities\Source
+/I ..\Plugins\Runtime\GameplayAbilities\Source\GameplayAbilities\Public
 /I Runtime
 /I Runtime\TraceLog\Public
 /I Runtime\Core\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\CoreUObject
 /I Runtime\CoreUObject\Public
-/I ..\Intermediate\Build\Win64\UE4Editor\Inc\Engine
-/I Runtime\Engine\Classes
-/I Runtime\Engine\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\NetCore
 /I Runtime\Net
 /I Runtime\Net\Core\Classes
 /I Runtime\Net\Core\Public
+/I ..\Intermediate\Build\Win64\UE4Editor\Inc\Engine
+/I Runtime\Engine\Classes
+/I Runtime\Engine\Public
 /I Runtime\ApplicationCore\Public
 /I Runtime\RHI\Public
 /I Runtime\Json\Public
@@ -233,6 +234,11 @@
 /I Editor\Kismet\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\ClothingSystemRuntimeInterface
 /I Runtime\ClothingSystemRuntimeInterface\Public
+/I ..\Plugins\Runtime\DataRegistry\Intermediate\Build\Win64\UE4Editor\Inc\DataRegistry
+/I ..\Plugins\Runtime\DataRegistry\Source
+/I ..\Plugins\Runtime\DataRegistry\Source\DataRegistry\Public
+/I C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Inc\HowlOfIron
+/I C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\AugmentedReality
 /I Runtime\AugmentedReality\Public
 /I ..\Intermediate\Build\Win64\UE4Editor\Inc\MRMesh
@@ -266,12 +272,12 @@
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"
 /I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"
-/FI"C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Yu"C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
-/Fp"C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
-"C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Source\HowlOfIron\HowlOfIronGameMode.cpp"
-/FI"C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\Definitions.HowlOfIron.h"
-/Fo"C:\Users\guillermo.suarez\OneDrive - U-tad\Desktop\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\HowlOfIronGameMode.cpp.obj"
+/FI"C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Yu"C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h"
+/Fp"C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\HowlOfIronEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.pch"
+"C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\HowlOfIronGameMode.cpp"
+/FI"C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\Definitions.HowlOfIron.h"
+/Fo"C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\HowlOfIronGameMode.cpp.obj"
 /TP
 /GR-
 /W4
