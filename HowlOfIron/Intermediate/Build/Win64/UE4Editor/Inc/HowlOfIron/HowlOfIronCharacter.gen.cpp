@@ -171,7 +171,7 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIronCharacter() {}
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_Inner = { "StartingPassiveAbilities", nullptr, (EPropertyFlags)0x0004000000000000, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UGameplayAbility_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_MetaData[] = {
-		{ "Category", "Abilities | Debugging" },
+		{ "Category", "Abilities" },
 		{ "ModuleRelativePath", "HowlOfIronCharacter.h" },
 	};
 #endif
@@ -219,7 +219,7 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIronCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHowlOfIronCharacter, 1264849557);
+	IMPLEMENT_CLASS(AHowlOfIronCharacter, 1940695884);
 	template<> HOWLOFIRON_API UClass* StaticClass<AHowlOfIronCharacter>()
 	{
 		return AHowlOfIronCharacter::StaticClass();
