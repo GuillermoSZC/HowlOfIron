@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\HowlOfIron.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{09F7DF56-AA31-4C14-BA8A-67FC64286253}</UniqueIdentifier>
+      <UniqueIdentifier>{A6DCF2A4-234A-47C7-A99E-7C4FFFC60FE5}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\HowlOfIron.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{4869FF25-6959-4DDE-89D4-68172CF6BB64}</UniqueIdentifier>
+      <UniqueIdentifier>{980B5E2D-8070-4CFF-AE89-5FAF49ABF5F3}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -26,11 +26,14 @@
     <None Include="..\..\Config\DefaultGame.ini">
       <Filter>Config</Filter>
     </None>
+    <None Include="..\..\Config\DefaultGameplayTags.ini">
+      <Filter>Config</Filter>
+    </None>
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\HowlOfIron">
-      <UniqueIdentifier>{4995D8F5-B03C-40DE-A286-6E760455E527}</UniqueIdentifier>
+      <UniqueIdentifier>{693BD0F0-7B1B-4D40-A3AC-8D384697B701}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\HowlOfIron\HowlOfIron.Build.cs">
       <Filter>Source\HowlOfIron</Filter>

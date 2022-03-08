@@ -2,12 +2,12 @@
 	"Targets": [
 		{
 			"Name": "HowlOfIron",
-			"Path": "C:\\Users\\guillermo.suarez\\Documents\\GitHub\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIron.Target.cs",
+			"Path": "C:\\Users\\pablo.bermejo\\Desktop\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIron.Target.cs",
 			"Type": "Game"
 		},
 		{
 			"Name": "HowlOfIronEditor",
-			"Path": "C:\\Users\\guillermo.suarez\\Documents\\GitHub\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIronEditor.Target.cs",
+			"Path": "C:\\Users\\pablo.bermejo\\Desktop\\HowlOfIron\\HowlOfIron\\Source\\HowlOfIronEditor.Target.cs",
 			"Type": "Editor"
 		}
 	]

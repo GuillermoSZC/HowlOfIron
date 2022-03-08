@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIron_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xF81ABC0C,
+				0xE5C65C01,
 				0x4B334AE8,
 				METADATA_PARAMS(nullptr, 0)
 			};

@@ -72,6 +72,11 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIronCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_DebuggingPassiveAbilities_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_DebuggingPassiveAbilities;
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_StartingPassiveAbilities_Inner;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StartingPassiveAbilities_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_StartingPassiveAbilities;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const UE4CodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
@@ -163,6 +168,14 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIronCharacter() {}
 	};
 #endif
 	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_DebuggingPassiveAbilities = { "DebuggingPassiveAbilities", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHowlOfIronCharacter, DebuggingPassiveAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_DebuggingPassiveAbilities_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_DebuggingPassiveAbilities_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_Inner = { "StartingPassiveAbilities", nullptr, (EPropertyFlags)0x0004000000000000, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, Z_Construct_UClass_UGameplayAbility_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_MetaData[] = {
+		{ "Category", "Abilities" },
+		{ "ModuleRelativePath", "HowlOfIronCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities = { "StartingPassiveAbilities", nullptr, (EPropertyFlags)0x0014000000000005, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AHowlOfIronCharacter, StartingPassiveAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AHowlOfIronCharacter_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_CameraBoom,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_FollowCamera,
@@ -173,6 +186,8 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIronCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_bAttDebugging,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_DebuggingPassiveAbilities_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_DebuggingPassiveAbilities,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities_Inner,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AHowlOfIronCharacter_Statics::NewProp_StartingPassiveAbilities,
 	};
 		const UE4CodeGen_Private::FImplementedInterfaceParams Z_Construct_UClass_AHowlOfIronCharacter_Statics::InterfaceParams[] = {
 			{ Z_Construct_UClass_UAbilitySystemInterface_NoRegister, (int32)VTABLE_OFFSET(AHowlOfIronCharacter, IAbilitySystemInterface), false },
@@ -204,7 +219,7 @@ void EmptyLinkFunctionForGeneratedCodeHowlOfIronCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AHowlOfIronCharacter, 1220996303);
+	IMPLEMENT_CLASS(AHowlOfIronCharacter, 1940695884);
 	template<> HOWLOFIRON_API UClass* StaticClass<AHowlOfIronCharacter>()
 	{
 		return AHowlOfIronCharacter::StaticClass();
