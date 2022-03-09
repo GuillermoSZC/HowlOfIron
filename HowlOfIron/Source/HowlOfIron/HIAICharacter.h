@@ -29,6 +29,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void ChangeAnimationToGoBack();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void Die();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

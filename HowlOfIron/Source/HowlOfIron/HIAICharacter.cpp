@@ -19,14 +19,9 @@ void AHIAICharacter::BeginPlay()
 
 void AHIAICharacter::Fire()
 {
-	// Get the animation object for the mesh
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance != NULL)
-	{
-		ChangeAnimationToGoBack();
-		//AnimInstance->Montage_Play(TP_FireAnimation, 1.f);
-		UE_LOG(LogTemp, Warning, TEXT("Disparo"));
-	}
+	ChangeAnimationToGoBack();
+	//AnimInstance->Montage_Play(TP_FireAnimation, 1.f);
+	UE_LOG(LogTemp, Warning, TEXT("Disparo"));
 }
 
 float AHIAICharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)

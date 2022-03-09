@@ -121,6 +121,15 @@ void AHIMuttonController::HICheckNearbyEnemy()
 					{
 						Cast<AHIMuttonController>(muttonController)->GetBlackboardComponent()->SetValueAsObject("TargetActorToFollow", playerPawn);
 						Cast<AHIMuttonController>(muttonController)->GetBlackboardComponent()->SetValueAsBool("IsAlert", true);
+						// if this -> muere
+						if (muttonController == this)
+						{
+							Cast<AHIMuttonController>(muttonController)->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
+							Cast<AHIAICharacter>(pawn)->Die();
+						}
+						/*else
+						{
+						}*/
 					}
 					break;
 				}
