@@ -1,2 +1,0 @@
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Intermediate\Build\Win64\UE4Editor\Development\HowlOfIron\Definitions.HowlOfIron.h
-C:\Users\guillermo.suarez\Documents\GitHub\HowlOfIron\HowlOfIron\Source\HowlOfIron\HowlOfIron.h
