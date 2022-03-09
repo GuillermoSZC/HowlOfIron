@@ -2,6 +2,7 @@
 
 
 #include "DamageExecution.h"
+#include "Kismet/GameplayStatics.h"
 
 UDamageExecution::UDamageExecution(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
@@ -39,6 +40,20 @@ void UDamageExecution::Execute_Implementation(const FGameplayEffectCustomExecuti
     float DamageMod = 0.f;
     ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(Attributes.DamageModDef, EvaluationParameters, DamageMod);
 
-    float DamageDone = 10 * DamageMod;
+    float DamageDone = 100 * DamageMod;
+    
+    const char* Die = "Proto_Map";
+
+    if (Health - DamageDone <= 0)
+    {
+        // UGameplayStatics::OpenLevel(GetWorld(), Die);
+        FGameplayEventData eventData;
+        eventData.EventTag = UGameplayTagsManager::Get().RequestGameplayTag("Event.Die");
+        eventData.Instigator = SourceActor;
+        eventData.Target = TargetActor;
+        TargetASC->HandleGameplayEvent(eventData.EventTag, &eventData);
+        // UE_LOG(LogTemp, Warning, TEXT("Entra"));
+    }
+
     OutExecutionOutput.AddOutputModifier(FGameplayModifierEvaluatedData(Attributes.HealthProperty, EGameplayModOp::Additive, -DamageDone));
 }

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "PlayerAttributes.h"
 #include "AbilitySystemComponent.h"
+#include "GameplayTagsModule.h"
 #include "GameplayEffectExecutionCalculation.h"
 #include "DamageExecution.generated.h"
 
