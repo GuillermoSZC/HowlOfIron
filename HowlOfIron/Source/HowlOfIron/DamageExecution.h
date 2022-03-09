@@ -15,7 +15,7 @@ struct AttStruct
 {
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Health);
 	DECLARE_ATTRIBUTE_CAPTUREDEF(DamageMod);
-	
+	//hola
 	AttStruct()
 	{
 		DEFINE_ATTRIBUTE_CAPTUREDEF(UPlayerAttributes, Health, Target, false);
