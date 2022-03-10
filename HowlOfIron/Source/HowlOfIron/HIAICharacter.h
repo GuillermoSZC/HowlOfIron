@@ -16,6 +16,16 @@ public:
 	AHIAICharacter();
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	float health = 100.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	float damageReceived = 40.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	bool isAlerted = false;
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -24,13 +34,17 @@ public:
 
 	void Fire();
 
-	virtual float TakeDamage(float Damage, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+	UFUNCTION(BlueprintImplementableEvent)
+	void HIChangeAnimationToGoBack();
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void ChangeAnimationToGoBack();
+	void HIChangeAnimationToTakeDamage();
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void Die();
+	void HIDie();
+
+	UFUNCTION(BlueprintCallable)
+	void HITakeDamage(AActor* _overlapedActor);
 
 protected:
 	// Called when the game starts or when spawned

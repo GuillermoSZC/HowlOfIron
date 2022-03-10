@@ -2,6 +2,9 @@
 
 
 #include "HIAICharacter.h"
+#include "HIMuttonController.h"
+#include "Kismet/GameplayStatics.h"
+#include "BehaviorTree/BlackboardComponent.h"
 
 // Sets default values
 AHIAICharacter::AHIAICharacter()
@@ -19,14 +22,36 @@ void AHIAICharacter::BeginPlay()
 
 void AHIAICharacter::Fire()
 {
-	ChangeAnimationToGoBack();
+	HIChangeAnimationToGoBack();
 	//AnimInstance->Montage_Play(TP_FireAnimation, 1.f);
 	UE_LOG(LogTemp, Warning, TEXT("Disparo"));
 }
 
-float AHIAICharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+void AHIAICharacter::HITakeDamage(AActor* _overlapedActor)
 {
-	return 0.0f;
+	health -= damageReceived;
+	// take damage animation
+	HIChangeAnimationToTakeDamage();
+
+	// Alert the others
+	if (!isAlerted)
+	{
+		TArray<AActor*> muttonsArray;
+		UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHIAICharacter::StaticClass(), muttonsArray);
+		for (AActor* mutton : muttonsArray)
+		{
+			AHIAICharacter* muttonCharacter = Cast<AHIAICharacter>(mutton);
+			muttonCharacter->isAlerted = true;
+			Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsObject("TargetActorToFollow", _overlapedActor);
+			Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsBool("IsAlert", true);
+		}
+	}
+
+	if (health <= 0)
+	{
+		Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
+		HIDie();
+	}
 }
 
 // Called every frame

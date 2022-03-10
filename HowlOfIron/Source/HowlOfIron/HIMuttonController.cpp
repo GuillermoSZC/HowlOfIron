@@ -125,7 +125,7 @@ void AHIMuttonController::HICheckNearbyEnemy()
 						if (muttonController == this)
 						{
 							Cast<AHIMuttonController>(muttonController)->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
-							Cast<AHIAICharacter>(pawn)->Die();
+							Cast<AHIAICharacter>(pawn)->HIDie();
 						}
 						/*else
 						{
