@@ -12,6 +12,9 @@ AHIAICharacter::AHIAICharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	TP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("TP_Gun"));
+	TP_Gun->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
 }
 
 // Called when the game starts or when spawned
@@ -78,22 +81,17 @@ void AHIAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AHIAICharacter::HIInstaKill()
 {
-	health = 0.f;
-    if (health <= 0)
+    Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
+    HIDie();
+
+
+    TArray<AActor*> muttonsArray;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHIAICharacter::StaticClass(), muttonsArray);
+    for (AActor* mutton : muttonsArray)
     {
-        Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
-        HIDie();
-
-
-        TArray<AActor*> muttonsArray;
-        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHIAICharacter::StaticClass(), muttonsArray);
-        for (AActor* mutton : muttonsArray)
-        {
-            AHIAICharacter* muttonCharacter = Cast<AHIAICharacter>(mutton);
-            muttonCharacter->isAlerted = true;
-            Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsObject("TargetActorToFollow", UGameplayStatics::GetActorOfClass(GetWorld(),AHowlOfIronCharacter::StaticClass()));
-            Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsBool("IsAlert", true);
-        }
+        AHIAICharacter* muttonCharacter = Cast<AHIAICharacter>(mutton);
+        muttonCharacter->isAlerted = true;
+        Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsObject("TargetActorToFollow", UGameplayStatics::GetActorOfClass(GetWorld(),AHowlOfIronCharacter::StaticClass()));
+        Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsBool("IsAlert", true);
     }
-
 }

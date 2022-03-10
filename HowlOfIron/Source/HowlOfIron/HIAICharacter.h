@@ -28,6 +28,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	float distanceToStop = 1000.f;
 
+	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
+	class USkeletalMeshComponent* TP_Gun;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
