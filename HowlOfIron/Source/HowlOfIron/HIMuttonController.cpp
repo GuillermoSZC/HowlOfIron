@@ -45,12 +45,21 @@ void AHIMuttonController::HIShoot()
 	APawn* pawn = GetPawn();
 	// Mirar a player
 	pawn->SetActorRotation(UKismetMathLibrary::FindLookAtRotation(pawn->GetActorLocation(), actorToFollow->GetActorLocation()));
-	// Animacion ir para atras
-	Cast<AHIAICharacter>(pawn)->Fire();
-	// Move hacia atras
+	
 	FVector distanceFromPlayer = pawn->GetActorLocation() - actorToFollow->GetActorLocation();
-	distanceFromPlayer.Normalize();
-	pawn->SetActorLocation(pawn->GetActorLocation() + distanceFromPlayer * 2.f);
+	if (distanceFromPlayer.Size() <= Cast<AHIAICharacter>(pawn)->distanceToStop)
+	{
+		// Animacion ir para atras
+		Cast<AHIAICharacter>(pawn)->HIChangeAnimationToGoBack();
+		// Move hacia atras
+		distanceFromPlayer.Normalize();
+		pawn->SetActorLocation(pawn->GetActorLocation() + distanceFromPlayer * 2.f);
+	}
+	else
+	{
+		// Animacion de apuntar
+		Cast<AHIAICharacter>(pawn)->HIChangeAnimationToAim();
+	}
 }
 
 void AHIMuttonController::HICheckNearbyEnemy()

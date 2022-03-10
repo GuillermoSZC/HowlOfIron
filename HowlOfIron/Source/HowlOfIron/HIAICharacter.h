@@ -25,6 +25,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	bool isAlerted = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
+	float distanceToStop = 1000.f;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -32,7 +35,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void Fire();
+	//void GoBack();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void HIChangeAnimationToAim();
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void HIChangeAnimationToGoBack();

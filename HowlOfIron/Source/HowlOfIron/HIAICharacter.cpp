@@ -20,12 +20,12 @@ void AHIAICharacter::BeginPlay()
 	
 }
 
-void AHIAICharacter::Fire()
-{
-	HIChangeAnimationToGoBack();
-	//AnimInstance->Montage_Play(TP_FireAnimation, 1.f);
-	UE_LOG(LogTemp, Warning, TEXT("Disparo"));
-}
+//void AHIAICharacter::GoBack()
+//{
+//	HIChangeAnimationToGoBack();
+//	//AnimInstance->Montage_Play(TP_FireAnimation, 1.f);
+//	UE_LOG(LogTemp, Warning, TEXT("Disparo"));
+//}
 
 void AHIAICharacter::HITakeDamage(AActor* _overlapedActor)
 {
