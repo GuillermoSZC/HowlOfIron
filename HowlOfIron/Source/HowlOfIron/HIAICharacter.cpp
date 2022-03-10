@@ -5,6 +5,7 @@
 #include "HIMuttonController.h"
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "HowlOfIronCharacter.h"
 
 // Sets default values
 AHIAICharacter::AHIAICharacter()
@@ -75,3 +76,24 @@ void AHIAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+void AHIAICharacter::HIInstaKill()
+{
+	health = 0.f;
+    if (health <= 0)
+    {
+        Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
+        HIDie();
+
+
+        TArray<AActor*> muttonsArray;
+        UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHIAICharacter::StaticClass(), muttonsArray);
+        for (AActor* mutton : muttonsArray)
+        {
+            AHIAICharacter* muttonCharacter = Cast<AHIAICharacter>(mutton);
+            muttonCharacter->isAlerted = true;
+            Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsObject("TargetActorToFollow", UGameplayStatics::GetActorOfClass(GetWorld(),AHowlOfIronCharacter::StaticClass()));
+            Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsBool("IsAlert", true);
+        }
+    }
+
+}

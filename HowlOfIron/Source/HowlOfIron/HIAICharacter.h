@@ -50,6 +50,9 @@ public:
 	void HIDie();
 
 	UFUNCTION(BlueprintCallable)
+	void HIInstaKill();
+
+	UFUNCTION(BlueprintCallable)
 	void HITakeDamage(AActor* _overlapedActor);
 
 protected:
