@@ -91,8 +91,6 @@ void AHIMuttonController::HICheckNearbyEnemy()
 		outHits,
 		true);
 
-	//TArray<UBlackboardComponent*> blackboardComponents;// = GetBlackboardComponent();// BrainComponent->GetBlackboardComponent();
-
 	TArray<AActor*> muttonControllers;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AHIMuttonController::StaticClass(), muttonControllers);
 
@@ -136,9 +134,6 @@ void AHIMuttonController::HICheckNearbyEnemy()
 							Cast<AHIMuttonController>(muttonController)->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
 							Cast<AHIAICharacter>(pawn)->HIDie();
 						}
-						/*else
-						{
-						}*/
 					}
 					break;
 				}
