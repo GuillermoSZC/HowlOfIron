@@ -10,6 +10,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Runtime/Engine/Public/EngineUtils.h"
+#include "HIAIAnimInstance.h"
 
 void AHIMuttonController::HIUpdateNextWaypoint()
 {
@@ -50,7 +51,10 @@ void AHIMuttonController::HIShoot()
 	if (distanceFromPlayer.Size() <= Cast<AHIAICharacter>(pawn)->distanceToStop)
 	{
 		// Animacion ir para atras
-		Cast<AHIAICharacter>(pawn)->HIChangeAnimationToGoBack();
+		//Cast<AHIAICharacter>(pawn)->HIChangeAnimationToGoBack();
+		UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(Cast<AHIAICharacter>(pawn)->GetMesh()->GetAnimInstance());
+		animInstance->goBack = true;
+		animInstance->aiming = false;
 		// Move hacia atras
 		distanceFromPlayer.Normalize();
 		pawn->SetActorLocation(pawn->GetActorLocation() + distanceFromPlayer * 2.f);
@@ -58,7 +62,10 @@ void AHIMuttonController::HIShoot()
 	else
 	{
 		// Animacion de apuntar
-		Cast<AHIAICharacter>(pawn)->HIChangeAnimationToAim();
+		//Cast<AHIAICharacter>(pawn)->HIChangeAnimationToAim();
+		UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(Cast<AHIAICharacter>(pawn)->GetMesh()->GetAnimInstance());
+		animInstance->aiming = true;
+		animInstance->goBack = false;
 	}
 }
 
