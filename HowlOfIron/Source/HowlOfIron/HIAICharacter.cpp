@@ -6,6 +6,9 @@
 #include "Kismet/GameplayStatics.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "HowlOfIronCharacter.h"
+#include "Components/AudioComponent.h"
+#include "Sound/SoundCue.h"
+#include "HIAIAnimInstance.h"
 
 // Sets default values
 AHIAICharacter::AHIAICharacter()
@@ -15,12 +18,26 @@ AHIAICharacter::AHIAICharacter()
 
 	TP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("TP_Gun"));
 	TP_Gun->SetupAttachment(GetMesh(), TEXT("hand_rSocket"));
+
+	static ConstructorHelpers::FObjectFinder<USoundCue> dieSoundCueObject(TEXT("SoundCue'/Game/RESOURCES/CHARACTER/ENEMIES/SFX/Enemy_death_Cue.Enemy_death_Cue'"));
+	if (dieSoundCueObject.Succeeded())
+	{
+		dieSoundCue = dieSoundCueObject.Object;
+
+		dieAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("DieAudioComponent"));
+		dieAudioComponent->SetupAttachment(RootComponent);
+	}
 }
 
 // Called when the game starts or when spawned
 void AHIAICharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (dieSoundCue && dieAudioComponent)
+	{
+		dieAudioComponent->SetSound(dieSoundCue);
+	}
 	
 }
 
@@ -35,7 +52,10 @@ void AHIAICharacter::HITakeDamage(AActor* _overlapedActor)
 {
 	health -= damageReceived;
 	// take damage animation
-	HIChangeAnimationToTakeDamage();
+	//HIChangeAnimationToTakeDamage();
+	UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
+	animInstance->takingDamage = true;
+	GetWorld()->GetTimerManager().SetTimer(DelayToStopAnimation, this, &AHIAICharacter::StopAnimationTakingDamage, 0.2f, false);
 
 	// Alert the others
 	if (!isAlerted)
@@ -54,8 +74,22 @@ void AHIAICharacter::HITakeDamage(AActor* _overlapedActor)
 	if (health <= 0)
 	{
 		Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
-		HIDie();
+		//PlayAnimMontage();
+		//UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
+		//if (animInstance)
+		//{
+		//	animInstance->Montage_Play()
+		//}
+		animInstance->isDead = true;
+		//HIDie();
+		//dieAudioComponent->Play();
 	}
+}
+
+void AHIAICharacter::StopAnimationTakingDamage()
+{
+	UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
+	animInstance->takingDamage = false;
 }
 
 // Called every frame
@@ -82,7 +116,10 @@ void AHIAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void AHIAICharacter::HIInstaKill()
 {
     Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
-    HIDie();
+    //HIDie();
+	UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
+	animInstance->isDead = true;
+	//dieAudioComponent->Play();
 
 
     TArray<AActor*> muttonsArray;

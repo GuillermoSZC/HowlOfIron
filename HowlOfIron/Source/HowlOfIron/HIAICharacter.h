@@ -15,6 +15,9 @@ public:
 	// Sets default values for this character's properties
 	AHIAICharacter();
 
+private:
+	FTimerHandle DelayToStopAnimation;
+
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	float health = 100.f;
@@ -30,6 +33,12 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 	class USkeletalMeshComponent* TP_Gun;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = Sound)
+	class USoundCue* dieSoundCue;
+
+	UPROPERTY(VisibleDefaultsOnly, Category = Sound)
+	class UAudioComponent* dieAudioComponent;
 
 public:
 	// Called every frame
@@ -57,6 +66,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void HITakeDamage(AActor* _overlapedActor);
+
+	UFUNCTION(BlueprintCallable)
+	void StopAnimationTakingDamage();
 
 protected:
 	// Called when the game starts or when spawned
