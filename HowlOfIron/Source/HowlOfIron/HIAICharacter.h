@@ -31,6 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	float distanceToStop = 1000.f;
 
+	UPROPERTY(EditAnywhere, Category = "Attributes")
+	class UParticleSystem* particleSystem;
+
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 	class USkeletalMeshComponent* TP_Gun;
 
@@ -39,6 +42,8 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Sound)
 	class UAudioComponent* dieAudioComponent;
+
+
 
 public:
 	// Called every frame
@@ -68,7 +73,10 @@ public:
 	void HITakeDamage(AActor* _overlapedActor);
 
 	UFUNCTION(BlueprintCallable)
-	void StopAnimationTakingDamage();
+	void HIStopAnimationTakingDamage();
+
+	UFUNCTION(BlueprintCallable)
+	void HISpawnParticles();
 
 protected:
 	// Called when the game starts or when spawned

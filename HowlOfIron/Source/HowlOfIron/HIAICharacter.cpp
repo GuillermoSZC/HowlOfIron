@@ -4,11 +4,14 @@
 #include "HIAICharacter.h"
 #include "HIMuttonController.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "HowlOfIronCharacter.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundCue.h"
 #include "HIAIAnimInstance.h"
+#include "Particles/ParticleEmitter.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 AHIAICharacter::AHIAICharacter()
@@ -27,6 +30,10 @@ AHIAICharacter::AHIAICharacter()
 		dieAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("DieAudioComponent"));
 		dieAudioComponent->SetupAttachment(RootComponent);
 	}
+
+	// TODO: Cambiar particulas por las buenas (o en BP)
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> particleSystemClass(TEXT("ParticleSystem'/Game/Realistic_Starter_VFX_Pack_Vol2/Particles/Sparks/P_Sparks_E.P_Sparks_E'"));
+	particleSystem = particleSystemClass.Object;
 }
 
 // Called when the game starts or when spawned
@@ -55,7 +62,7 @@ void AHIAICharacter::HITakeDamage(AActor* _overlapedActor)
 	//HIChangeAnimationToTakeDamage();
 	UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
 	animInstance->takingDamage = true;
-	GetWorld()->GetTimerManager().SetTimer(DelayToStopAnimation, this, &AHIAICharacter::StopAnimationTakingDamage, 0.2f, false);
+	GetWorld()->GetTimerManager().SetTimer(DelayToStopAnimation, this, &AHIAICharacter::HIStopAnimationTakingDamage, 0.2f, false);
 
 	// Alert the others
 	if (!isAlerted)
@@ -86,7 +93,7 @@ void AHIAICharacter::HITakeDamage(AActor* _overlapedActor)
 	}
 }
 
-void AHIAICharacter::StopAnimationTakingDamage()
+void AHIAICharacter::HIStopAnimationTakingDamage()
 {
 	UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
 	animInstance->takingDamage = false;
@@ -115,6 +122,7 @@ void AHIAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 void AHIAICharacter::HIInstaKill()
 {
+	UE_LOG(LogTemp, Warning, TEXT("instakill"));
     Cast<AAIController>(GetController())->GetBlackboardComponent()->SetValueAsBool("IsDead", true);
     //HIDie();
 	UHIAIAnimInstance* animInstance = Cast<UHIAIAnimInstance>(GetMesh()->GetAnimInstance());
@@ -131,4 +139,11 @@ void AHIAICharacter::HIInstaKill()
         Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsObject("TargetActorToFollow", UGameplayStatics::GetActorOfClass(GetWorld(),AHowlOfIronCharacter::StaticClass()));
         Cast<AAIController>(muttonCharacter->GetController())->GetBlackboardComponent()->SetValueAsBool("IsAlert", true);
     }
+}
+
+void AHIAICharacter::HISpawnParticles()
+{
+	FVector particlesLocation = TP_Gun->GetBoneLocation(FName(TEXT("b_gun_muzzleflash")));
+	// TODO: Descomentar cuando se metan las particulas buenas
+	//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesLocation, FRotator::ZeroRotator, true);
 }
