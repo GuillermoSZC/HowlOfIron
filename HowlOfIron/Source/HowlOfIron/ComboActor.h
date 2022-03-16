@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "HIComboQueue.h"
+#include <AbilitySystemComponent.h>
+#include "HIComboManagerComponent.h"
 #include "ComboActor.generated.h"
 
 UCLASS()
@@ -12,18 +13,14 @@ class HOWLOFIRON_API AComboActor : public AActor
 {
 	GENERATED_BODY()
 
-public:
+private:
+
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* body;
 
 	UPROPERTY(VisibleAnywhere)
-	UHIComboQueue* comboQueue;
+	UHIComboManagerComponent* comboManagerComponent;
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UGameplayAbility> abilityClass;
-
-	HIComboAbility comboAbility;
-	
 public:	
 	// Sets default values for this actor's properties
 	AComboActor();
@@ -38,5 +35,4 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void EnqueueAbility();
-
 };

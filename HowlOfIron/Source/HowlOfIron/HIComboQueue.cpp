@@ -15,6 +15,7 @@ bool UHIComboQueue::Dequeue(HIComboAbility& ability_)
 
 bool UHIComboQueue::Enqueue(const HIComboAbility& _ability)
 {
+
 	if (IsFull() == false) {
 		bool success = abilitiesQueue.Enqueue(_ability);
 
@@ -42,7 +43,7 @@ bool UHIComboQueue::IsEmpty()
 
 bool UHIComboQueue::IsFull()
 {
-	return freeWeight > 0;
+	return freeWeight <= 0;
 }
 
 const int UHIComboQueue::GetMaxWeight() const

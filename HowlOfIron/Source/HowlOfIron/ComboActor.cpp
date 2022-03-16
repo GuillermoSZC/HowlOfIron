@@ -9,34 +9,25 @@ AComboActor::AComboActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	body = CreateDefaultSubobject<UStaticMeshComponent>("body");
+	body = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("body"));
 
-	comboAbility.SetGameplayAbility(abilityClass);
-	comboAbility.SetAbilityActivationDelay(0.f);
-	comboAbility.SetAbilityPriority(1);
-	comboAbility.SetAbilityWeight(1);
-
-	comboQueue = CreateDefaultSubobject<UHIComboQueue>("comboQueue");
-	comboQueue->SetMaxWeight(3);
+	comboManagerComponent = CreateDefaultSubobject<UHIComboManagerComponent>("comboManagerComponent");
 }
 
 // Called when the game starts or when spawned
 void AComboActor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	comboQueue->Empty();
 }
 
 // Called every frame
 void AComboActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AComboActor::EnqueueAbility()
 {
-	comboQueue->Enqueue(comboAbility);
+	comboManagerComponent->EnqueueAbility();
 }
 
