@@ -8,22 +8,42 @@ UHIComboQueue::UHIComboQueue()
 	
 }
 
+void UHIComboQueue::Update(float deltaTime)
+{
+	if (IsEmpty() == false) {
+		timeFilled += deltaTime;
+
+		if (timeFilled >= queueResetCooldown) {
+			Empty();
+			timeFilled = 0.f;
+		}
+	}
+}
+
+void UHIComboQueue::EnableUpdate()
+{
+	
+}
+
 bool UHIComboQueue::Dequeue(HIComboAbility& ability_)
 {
-	return abilitiesQueue.Dequeue(ability_);
+	if (abilitiesArray.Num() > 0) {
+		ability_ = abilitiesArray.Pop();
+		return true;
+	}
+	
+	return false;
 }
 
 bool UHIComboQueue::Enqueue(const HIComboAbility& _ability)
 {
 
 	if (IsFull() == false) {
-		bool success = abilitiesQueue.Enqueue(_ability);
+		abilitiesArray.Push(_ability);
+		freeWeight -= _ability.GetAbilityWeight();
+		timeFilled = 0.f;
 
-		if (success) {
-			freeWeight -= _ability.GetAbilityWeight();
-		}
-
-		return success;
+		return true;
 	}
 	
 	return false;
@@ -31,14 +51,14 @@ bool UHIComboQueue::Enqueue(const HIComboAbility& _ability)
 
 void UHIComboQueue::Empty()
 {
-	abilitiesQueue.Empty();
+	abilitiesArray.Empty();
 
 	freeWeight = maxWeight;
 }
 
 bool UHIComboQueue::IsEmpty()
 {
-	return abilitiesQueue.IsEmpty() && freeWeight == maxWeight;
+	return freeWeight == maxWeight;
 }
 
 bool UHIComboQueue::IsFull()
@@ -51,7 +71,17 @@ const int UHIComboQueue::GetMaxWeight() const
 	return maxWeight;
 }
 
+const int UHIComboQueue::GetQueueResetCooldown() const
+{
+	return queueResetCooldown;
+}
+
 void UHIComboQueue::SetMaxWeight(int newMaxWeight)
 {
 	maxWeight = newMaxWeight;
+}
+
+void UHIComboQueue::SetQueueResetCooldown(float newQueueResetCooldown)
+{
+	queueResetCooldown = newQueueResetCooldown;
 }

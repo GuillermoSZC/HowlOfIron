@@ -26,8 +26,14 @@ void AComboActor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AComboActor::EnqueueAbility()
+void AComboActor::EnqueueAbility(bool attack)
 {
-	comboManagerComponent->EnqueueAbility();
+	if (attack) {
+		comboManagerComponent->EnqueueBasicAbility();
+	}
+	else {
+		comboManagerComponent->EnqueueStrongAbility();
+	}
+	
 }
 

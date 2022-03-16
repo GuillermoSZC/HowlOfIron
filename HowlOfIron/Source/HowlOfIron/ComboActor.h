@@ -34,5 +34,5 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
-	void EnqueueAbility();
+	void EnqueueAbility(bool attack);
 };

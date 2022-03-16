@@ -16,6 +16,7 @@ UHIComboManagerComponent::UHIComboManagerComponent()
 
 	comboQueue = CreateDefaultSubobject<UHIComboQueue>("comboQueue");
 	comboQueue->SetMaxWeight(3);
+	comboQueue->SetQueueResetCooldown(5.f);
 }
 
 
@@ -25,10 +26,15 @@ void UHIComboManagerComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	comboAbility.SetGameplayAbility(abilityClass);
-	comboAbility.SetAbilityActivationDelay(0.f);
-	comboAbility.SetAbilityPriority(1);
-	comboAbility.SetAbilityWeight(1);
+	basicAbility.SetGameplayAbility(basicAbilityClass);
+	basicAbility.SetAbilityActivationDelay(0.f);
+	basicAbility.SetAbilityPriority(1);
+	basicAbility.SetAbilityWeight(1);
+
+	strongAbility.SetGameplayAbility(strongAbilityClass);
+	strongAbility.SetAbilityActivationDelay(0.f);
+	strongAbility.SetAbilityPriority(1);
+	strongAbility.SetAbilityWeight(3);
 
 	comboQueue->Empty();
 }
@@ -46,10 +52,17 @@ void UHIComboManagerComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 		FGameplayAbilitySpecHandle SpecHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(launchedAbility.GetGameplayAbility().GetDefaultObject(), 1, 0));
 		abilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
 	}
+
+	comboQueue->Update(DeltaTime);
 }
 
-void UHIComboManagerComponent::EnqueueAbility()
+void UHIComboManagerComponent::EnqueueBasicAbility()
 {
-	comboQueue->Enqueue(comboAbility);
+	comboQueue->Enqueue(basicAbility);
+}
+
+void UHIComboManagerComponent::EnqueueStrongAbility()
+{
+	comboQueue->Enqueue(strongAbility);
 }
 

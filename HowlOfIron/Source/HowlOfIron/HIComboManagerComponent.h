@@ -23,15 +23,19 @@ public:
 private:
 
 	UPROPERTY(VisibleAnywhere)
-	UAbilitySystemComponent* abilitySystem = nullptr;
+	UAbilitySystemComponent* abilitySystem;
 
 	UPROPERTY(VisibleAnywhere)
-	UHIComboQueue* comboQueue = nullptr;
+	UHIComboQueue* comboQueue;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UGameplayAbility> abilityClass;
+	TSubclassOf<UGameplayAbility> basicAbilityClass;
 
-	HIComboAbility comboAbility;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UGameplayAbility> strongAbilityClass;
+
+	HIComboAbility basicAbility;
+	HIComboAbility strongAbility;
 
 protected:
 	// Called when the game starts
@@ -41,6 +45,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	UFUNCTION(BlueprintCallable)
-	void EnqueueAbility();
+	void EnqueueBasicAbility();
+
+	void EnqueueStrongAbility();
+
+	FTimerHandle updateTimer;
 };

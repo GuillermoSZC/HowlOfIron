@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include <Containers/Queue.h>
 #include "HIComboAbility.h"
 #include "HIComboQueue.generated.h"
 
@@ -21,15 +20,46 @@ public:
 
 private:
 
-	TQueue<HIComboAbility> abilitiesQueue;
+	TArray<HIComboAbility> abilitiesArray;
 
-	UPROPERTY(VisibleAnywhere, Category = "Combo")
-	int maxWeight;
-
-	UPROPERTY(VisibleAnywhere, Category = "Combo")
+	/// <summary>
+	/// Variable that stores free weight. While this value is higher than 0 Abilities can be enqueued
+	/// </summary>
+	UPROPERTY(VisibleAnywhere, Category = "Queue | Weight")
 	int freeWeight;
 
+	/// <summary>
+	/// Variable that stores the maximum freeWeigth the queue is going to have
+	/// </summary>
+	UPROPERTY(VisibleAnywhere, Category = "Queue | Weight")
+		int maxWeight;
+
+	/// <summary>
+	/// Time that is going to elapse until queue will empty
+	/// </summary>
+	UPROPERTY(VisibleAnywhere, Category = "Queue | Time")
+	float queueResetCooldown;
+
+	/// <summary>
+	/// Time elapsed since the queue has enqueued first ability
+	/// </summary>
+	UPROPERTY(VisibleAnywhere, Category = "Queue | Time")
+	float timeFilled;
+
+	/// <summary>
+	/// Timer that calls Update in loop
+	/// </summary>
+	FTimerHandle updateTimer;
+
 public:
+
+	/// <summary>
+	/// Updates the time variables
+	/// </summary>
+	/// <param name="deltaTime"> time considered to update time variables </param>
+	void Update(float deltaTime);
+
+	void EnableUpdate();
 
 	/// <summary>
 	/// Removes and returns the ability from the tail of the queue.
@@ -65,10 +95,16 @@ public:
 #pragma region GETTERS
 	UFUNCTION()
 	const int GetMaxWeight() const;
+
+	UFUNCTION()
+	const int GetQueueResetCooldown() const;
 #pragma  endregion
 
 #pragma region SETTERS
 	UFUNCTION()
 	void SetMaxWeight(int newMaxWeight);
+
+	UFUNCTION()
+	void SetQueueResetCooldown(float newQueueResetCooldown);
 #pragma endregion
 };
