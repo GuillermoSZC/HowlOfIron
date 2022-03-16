@@ -32,7 +32,7 @@ AHIAICharacter::AHIAICharacter()
 	}
 
 	// TODO: Cambiar particulas por las buenas (o en BP)
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> particleSystemClass(TEXT("ParticleSystem'/Game/Realistic_Starter_VFX_Pack_Vol2/Particles/Sparks/P_Sparks_E.P_Sparks_E'"));
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> particleSystemClass(TEXT("NiagaraSystem'/Game/RESOURCES/VFX/FX_MuzzleFlash.FX_MuzzleFlash'"));
 	particleSystem = particleSystemClass.Object;
 }
 
@@ -143,7 +143,7 @@ void AHIAICharacter::HIInstaKill()
 
 void AHIAICharacter::HISpawnParticles()
 {
+	UE_LOG(LogTemp, Warning, TEXT("SHAFDSHGFBDSF"));
 	FVector particlesLocation = TP_Gun->GetBoneLocation(FName(TEXT("b_gun_muzzleflash")));
-	// TODO: Descomentar cuando se metan las particulas buenas
-	//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesLocation, FRotator::ZeroRotator, true);
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesLocation, FRotator::ZeroRotator, true);
 }

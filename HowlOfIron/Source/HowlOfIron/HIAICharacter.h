@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "NiagaraComponent.h"
 #include "HIAICharacter.generated.h"
 
 UCLASS()
