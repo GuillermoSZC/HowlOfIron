@@ -39,11 +39,17 @@ bool UHIComboQueue::Enqueue(const HIComboAbility& _ability)
 {
 
 	if (IsFull() == false) {
-		abilitiesArray.Push(_ability);
+		abilitiesArray.Add(_ability);
 		freeWeight -= _ability.GetAbilityWeight();
 		timeFilled = 0.f;
 
 		return true;
+	}
+	else {
+		if (abilitiesArray.Num() > 0) {
+			abilitiesArray[abilitiesArray.Num() - 1] = _ability;
+		}
+		
 	}
 	
 	return false;

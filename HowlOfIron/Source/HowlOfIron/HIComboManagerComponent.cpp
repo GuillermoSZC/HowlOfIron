@@ -4,7 +4,7 @@
 #include "HIComboManagerComponent.h"
 
 // Sets default values for this component's properties
-UHIComboManagerComponent::UHIComboManagerComponent()
+UHIComboManagerComponent::UHIComboManagerComponent() : launchingAbility(false)
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -37,8 +37,10 @@ void UHIComboManagerComponent::BeginPlay()
 	strongAbility.SetAbilityWeight(3);
 
 	comboQueue->Empty();
-}
 
+	abilitySystem->AbilityActivatedCallbacks.AddUFunction(this, FName("OnComboAbilityActivated"));
+	abilitySystem->AbilityEndedCallbacks.AddUFunction(this, FName("OnComboAbilityEnded"));
+}
 
 // Called every frame
 void UHIComboManagerComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -48,9 +50,11 @@ void UHIComboManagerComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 	// ...
 
 	HIComboAbility launchedAbility;
-	if (comboQueue->Dequeue(launchedAbility)) {
-		FGameplayAbilitySpecHandle SpecHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(launchedAbility.GetGameplayAbility().GetDefaultObject(), 1, 0));
-		abilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
+	if (!launchingAbility) {
+		if (comboQueue->Dequeue(launchedAbility)) {
+			FGameplayAbilitySpecHandle SpecHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(launchedAbility.GetGameplayAbility().GetDefaultObject(), 1, 0));
+			abilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
+		}
 	}
 
 	comboQueue->Update(DeltaTime);
@@ -64,5 +68,15 @@ void UHIComboManagerComponent::EnqueueBasicAbility()
 void UHIComboManagerComponent::EnqueueStrongAbility()
 {
 	comboQueue->Enqueue(strongAbility);
+}
+
+void UHIComboManagerComponent::OnComboAbilityActivated(UGameplayAbility* launchedAbility)
+{
+	launchingAbility = true;
+}
+
+void UHIComboManagerComponent::OnComboAbilityEnded(UGameplayAbility* launchedAbility)
+{
+	launchingAbility = false;
 }
 

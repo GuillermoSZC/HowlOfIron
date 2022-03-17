@@ -37,6 +37,8 @@ private:
 	HIComboAbility basicAbility;
 	HIComboAbility strongAbility;
 
+	bool launchingAbility;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -50,4 +52,10 @@ public:
 	void EnqueueStrongAbility();
 
 	FTimerHandle updateTimer;
+
+	UFUNCTION() 
+	void OnComboAbilityActivated(UGameplayAbility* launchedAbility);
+
+	UFUNCTION()
+	void OnComboAbilityEnded(UGameplayAbility* launchedAbility);
 };
