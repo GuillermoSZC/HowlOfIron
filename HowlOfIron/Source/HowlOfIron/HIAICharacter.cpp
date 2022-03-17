@@ -31,9 +31,8 @@ AHIAICharacter::AHIAICharacter()
 		dieAudioComponent->SetupAttachment(RootComponent);
 	}
 
-	// TODO: Cambiar particulas por las buenas (o en BP)
-	// static ConstructorHelpers::FObjectFinder<UParticleSystem> particleSystemClass(TEXT("NiagaraSystem'/Game/RESOURCES/VFX/FX_MuzzleFlash.FX_MuzzleFlash'"));
-	// particleSystem = particleSystemClass.Object;
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> particleSystemClass(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Explosion.P_Explosion'"));
+	particleSystem = particleSystemClass.Object;
 }
 
 // Called when the game starts or when spawned
@@ -143,7 +142,10 @@ void AHIAICharacter::HIInstaKill()
 
 void AHIAICharacter::HISpawnParticles()
 {
-	UE_LOG(LogTemp, Warning, TEXT("SHAFDSHGFBDSF"));
+	UE_LOG(LogTemp, Warning, TEXT("Spawn Particles"));
 	FVector particlesLocation = TP_Gun->GetBoneLocation(FName(TEXT("b_gun_muzzleflash")));
-	//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesLocation, FRotator::ZeroRotator, true);
+	FTransform particlesTransform;
+	particlesTransform.SetLocation(particlesLocation);
+	particlesTransform.SetScale3D(particlesScale);
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesTransform, true);
 }

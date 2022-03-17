@@ -43,7 +43,8 @@ public:
 	UPROPERTY(VisibleDefaultsOnly, Category = Sound)
 	class UAudioComponent* dieAudioComponent;
 
-
+	UPROPERTY(EditAnywhere, Category = Attributes)
+	FVector particlesScale = FVector(0.1f, 0.1f, 0.1f);
 
 public:
 	// Called every frame
