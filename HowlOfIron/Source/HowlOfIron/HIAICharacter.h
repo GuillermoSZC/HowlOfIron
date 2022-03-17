@@ -32,8 +32,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attributes")
 	float distanceToStop = 1000.f;
 
-	UPROPERTY(EditAnywhere, Category = "Attributes")
-	class UParticleSystem* particleSystem;
+	//UPROPERTY(EditAnywhere, Category = "Attributes")
+	//class UNiagaraComponent* particleSystem;
 
 	UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
 	class USkeletalMeshComponent* TP_Gun;

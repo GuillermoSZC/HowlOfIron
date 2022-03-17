@@ -32,8 +32,8 @@ AHIAICharacter::AHIAICharacter()
 	}
 
 	// TODO: Cambiar particulas por las buenas (o en BP)
-	static ConstructorHelpers::FObjectFinder<UParticleSystem> particleSystemClass(TEXT("NiagaraSystem'/Game/RESOURCES/VFX/FX_MuzzleFlash.FX_MuzzleFlash'"));
-	particleSystem = particleSystemClass.Object;
+	//static ConstructorHelpers::FObjectFinder<UNiagaraComponent> particleSystemClass(TEXT("NiagaraSystem'/Game/RESOURCES/VFX/FX_MuzzleFlash.FX_MuzzleFlash'"));
+	//particleSystem = particleSystemClass.Object;
 }
 
 // Called when the game starts or when spawned
@@ -145,5 +145,5 @@ void AHIAICharacter::HISpawnParticles()
 {
 	UE_LOG(LogTemp, Warning, TEXT("SHAFDSHGFBDSF"));
 	FVector particlesLocation = TP_Gun->GetBoneLocation(FName(TEXT("b_gun_muzzleflash")));
-	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesLocation, FRotator::ZeroRotator, true);
+	//UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), particleSystem, particlesLocation, FRotator::ZeroRotator, true);
 }
