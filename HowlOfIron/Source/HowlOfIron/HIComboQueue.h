@@ -59,8 +59,6 @@ public:
 	/// <param name="deltaTime"> time considered to update time variables </param>
 	void Update(float deltaTime);
 
-	void EnableUpdate();
-
 	/// <summary>
 	/// Removes and returns the ability from the tail of the queue.
 	/// </summary>

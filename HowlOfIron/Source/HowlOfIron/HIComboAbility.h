@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include <Abilities/GameplayAbility.h>
 
 /**
@@ -20,7 +19,7 @@ private:
 
 	const unsigned int COMBO_ABILITY_ID = 0;
 
-	TSubclassOf<UGameplayAbility> gameplayAbility;
+	FGameplayAbilitySpecHandle gameplayAbilityHandle;
 
 	int abilityWeight;
 
@@ -34,7 +33,7 @@ public:
 
 	const unsigned int GetComboAbilityID() const;
 
-	const TSubclassOf<UGameplayAbility> GetGameplayAbility() const;
+	const FGameplayAbilitySpecHandle GetGameplayAbilityHandle() const;
 
 	const int GetAbilityWeight() const;
 
@@ -45,7 +44,7 @@ public:
 #pragma endregion
 
 #pragma region SETTERS
-	void SetGameplayAbility(TSubclassOf<UGameplayAbility>& newGameplayAbility);
+	void SetGameplayAbilityHandle(FGameplayAbilitySpecHandle& newGameplayAbility);
 
 	void SetAbilityWeight(int newAbilityWeight);
 

@@ -18,10 +18,6 @@ void UHIComboQueue::Update(float deltaTime)
 			timeFilled = 0.f;
 		}
 	}
-}
-
-void UHIComboQueue::EnableUpdate()
-{
 	
 }
 
@@ -29,6 +25,7 @@ bool UHIComboQueue::Dequeue(HIComboAbility& ability_)
 {
 	if (abilitiesArray.Num() > 0) {
 		ability_ = abilitiesArray.Pop();
+
 		return true;
 	}
 	
@@ -46,6 +43,7 @@ bool UHIComboQueue::Enqueue(const HIComboAbility& _ability)
 		return true;
 	}
 	else {
+
 		if (abilitiesArray.Num() > 0) {
 			abilitiesArray[abilitiesArray.Num() - 1] = _ability;
 		}

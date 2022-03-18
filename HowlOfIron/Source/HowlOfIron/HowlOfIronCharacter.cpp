@@ -46,6 +46,8 @@ AHowlOfIronCharacter::AHowlOfIronCharacter()
     AbilitySystem = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystem"));
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
+
+	comboManagerComponent = CreateDefaultSubobject<UHIComboManagerComponent>("comboManagerComponent");
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -71,6 +73,9 @@ void AHowlOfIronCharacter::BeginPlay()
             AbilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
         }
 	}
+
+	comboManagerComponent->SetInputBindings(InputComponent);
+	comboManagerComponent->AttachAbilitySystem(AbilitySystem);
 }
 
 void AHowlOfIronCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)

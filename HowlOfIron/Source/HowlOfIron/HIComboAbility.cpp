@@ -10,9 +10,9 @@ HIComboAbility::HIComboAbility() : COMBO_ABILITY_ID(comboAbilitySequence)
 	++comboAbilitySequence;
 }
 
-const TSubclassOf<UGameplayAbility> HIComboAbility::GetGameplayAbility() const
+const FGameplayAbilitySpecHandle HIComboAbility::GetGameplayAbilityHandle() const
 {
-	return gameplayAbility;
+	return gameplayAbilityHandle;
 }
 
 const int HIComboAbility::GetAbilityWeight() const
@@ -35,9 +35,9 @@ const unsigned int HIComboAbility::GetComboAbilityID() const
 	return COMBO_ABILITY_ID;
 }
 
-void HIComboAbility::SetGameplayAbility(TSubclassOf<UGameplayAbility>& newGameplayAbility)
+void HIComboAbility::SetGameplayAbilityHandle(FGameplayAbilitySpecHandle& newGameplayAbility)
 {
-	gameplayAbility = newGameplayAbility;
+	gameplayAbilityHandle = newGameplayAbility;
 }
 
 void HIComboAbility::SetAbilityWeight(int newAbilityWeight)
@@ -62,7 +62,7 @@ bool operator==(const HIComboAbility& lhs, const HIComboAbility& rhs)
 
 HIComboAbility& HIComboAbility::operator=(const HIComboAbility& other)
 {
-	gameplayAbility = other.gameplayAbility;
+	gameplayAbilityHandle = other.gameplayAbilityHandle;
 	abilityActivationDelay = other.abilityActivationDelay;
 	abilityPriority = other.abilityPriority;
 	abilityWeight = other.abilityWeight;

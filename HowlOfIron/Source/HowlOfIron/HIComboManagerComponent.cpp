@@ -2,6 +2,7 @@
 
 
 #include "HIComboManagerComponent.h"
+#include <Components/InputComponent.h>
 
 // Sets default values for this component's properties
 UHIComboManagerComponent::UHIComboManagerComponent() : launchingAbility(false)
@@ -11,8 +12,6 @@ UHIComboManagerComponent::UHIComboManagerComponent() : launchingAbility(false)
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
-
-	abilitySystem = CreateDefaultSubobject<UAbilitySystemComponent>("abilitySystem");
 
 	comboQueue = CreateDefaultSubobject<UHIComboQueue>("comboQueue");
 	comboQueue->SetMaxWeight(3);
@@ -26,20 +25,8 @@ void UHIComboManagerComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	basicAbility.SetGameplayAbility(basicAbilityClass);
-	basicAbility.SetAbilityActivationDelay(0.f);
-	basicAbility.SetAbilityPriority(1);
-	basicAbility.SetAbilityWeight(1);
-
-	strongAbility.SetGameplayAbility(strongAbilityClass);
-	strongAbility.SetAbilityActivationDelay(0.f);
-	strongAbility.SetAbilityPriority(1);
-	strongAbility.SetAbilityWeight(3);
 
 	comboQueue->Empty();
-
-	abilitySystem->AbilityActivatedCallbacks.AddUFunction(this, FName("OnComboAbilityActivated"));
-	abilitySystem->AbilityEndedCallbacks.AddUFunction(this, FName("OnComboAbilityEnded"));
 }
 
 // Called every frame
@@ -49,15 +36,43 @@ void UHIComboManagerComponent::TickComponent(float DeltaTime, ELevelTick TickTyp
 
 	// ...
 
-	HIComboAbility launchedAbility;
-	if (!launchingAbility) {
-		if (comboQueue->Dequeue(launchedAbility)) {
-			FGameplayAbilitySpecHandle SpecHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(launchedAbility.GetGameplayAbility().GetDefaultObject(), 1, 0));
-			abilitySystem->CallServerTryActivateAbility(SpecHandle, false, FPredictionKey());
+	if (abilitySystem) {
+		HIComboAbility launchedAbility;
+		if (!launchingAbility) {
+			if (comboQueue->Dequeue(launchedAbility)) {
+				abilitySystem->CallServerTryActivateAbility(launchedAbility.GetGameplayAbilityHandle(), false, FPredictionKey());
+			}
 		}
 	}
 
 	comboQueue->Update(DeltaTime);
+}
+
+void UHIComboManagerComponent::SetInputBindings(UInputComponent* inputComponent)
+{
+	inputComponent->BindAction("BasicAttack", IE_Pressed, this, &UHIComboManagerComponent::EnqueueBasicAbility);
+	inputComponent->BindAction("StrongAttack", IE_Pressed, this, &UHIComboManagerComponent::EnqueueStrongAbility);
+}
+
+void UHIComboManagerComponent::AttachAbilitySystem(UAbilitySystemComponent* attachedAbilitySystem)
+{
+	abilitySystem = attachedAbilitySystem;
+
+	abilitySystem->AbilityActivatedCallbacks.AddUFunction(this, FName("OnComboAbilityActivated"));
+	abilitySystem->AbilityEndedCallbacks.AddUFunction(this, FName("OnComboAbilityEnded"));
+
+	FGameplayAbilitySpecHandle basicAbilityHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(basicAbilityClass.GetDefaultObject(), 1, 0));
+	FGameplayAbilitySpecHandle strongAbilityHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(strongAbilityClass.GetDefaultObject(), 1, 0));
+
+	basicAbility.SetGameplayAbilityHandle(basicAbilityHandle);
+	basicAbility.SetAbilityActivationDelay(0.f);
+	basicAbility.SetAbilityPriority(1);
+	basicAbility.SetAbilityWeight(1);
+
+	strongAbility.SetGameplayAbilityHandle(strongAbilityHandle);
+	strongAbility.SetAbilityActivationDelay(0.f);
+	strongAbility.SetAbilityPriority(1);
+	strongAbility.SetAbilityWeight(3);
 }
 
 void UHIComboManagerComponent::EnqueueBasicAbility()

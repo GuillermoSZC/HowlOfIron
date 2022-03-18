@@ -7,6 +7,7 @@
 #include "AbilitySystemComponent.h"
 #include "PlayerAttributes.h"
 #include "GameFramework/Character.h"
+#include "HIComboManagerComponent.h"
 #include "HowlOfIronCharacter.generated.h"
 
 UCLASS(config=Game)
@@ -51,6 +52,11 @@ public:
     
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Abilities")
         TArray<TSubclassOf<class UGameplayAbility>> StartingPassiveAbilities;
+
+private:
+
+	UPROPERTY(VisibleAnywhere)
+	UHIComboManagerComponent* comboManagerComponent;
 
 protected:
 
