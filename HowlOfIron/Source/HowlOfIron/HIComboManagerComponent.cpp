@@ -14,8 +14,8 @@ UHIComboManagerComponent::UHIComboManagerComponent() : launchingAbility(false)
 	// ...
 
 	comboQueue = CreateDefaultSubobject<UHIComboQueue>("comboQueue");
-	comboQueue->SetMaxWeight(3);
-	comboQueue->SetQueueResetCooldown(5.f);
+	comboQueue->SetMaxWeight(MAX_WEIGHT);
+	comboQueue->SetQueueResetCooldown(QUEUE_RESET_COOLDOWN);
 }
 
 
@@ -52,6 +52,7 @@ void UHIComboManagerComponent::SetInputBindings(UInputComponent* inputComponent)
 {
 	inputComponent->BindAction("BasicAttack", IE_Pressed, this, &UHIComboManagerComponent::EnqueueBasicAbility);
 	inputComponent->BindAction("StrongAttack", IE_Pressed, this, &UHIComboManagerComponent::EnqueueStrongAbility);
+	inputComponent->BindAction("CancelAbility", IE_Pressed, this, &UHIComboManagerComponent::EnqueueCancelAbility);
 }
 
 void UHIComboManagerComponent::AttachAbilitySystem(UAbilitySystemComponent* attachedAbilitySystem)
@@ -63,6 +64,7 @@ void UHIComboManagerComponent::AttachAbilitySystem(UAbilitySystemComponent* atta
 
 	FGameplayAbilitySpecHandle basicAbilityHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(basicAbilityClass.GetDefaultObject(), 1, 0));
 	FGameplayAbilitySpecHandle strongAbilityHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(strongAbilityClass.GetDefaultObject(), 1, 0));
+	FGameplayAbilitySpecHandle cancelAbilityHandle = abilitySystem->GiveAbility(FGameplayAbilitySpec(cancelAbilityClass.GetDefaultObject(), 1, 0));
 
 	basicAbility.SetGameplayAbilityHandle(basicAbilityHandle);
 	basicAbility.SetAbilityActivationDelay(0.f);
@@ -73,16 +75,37 @@ void UHIComboManagerComponent::AttachAbilitySystem(UAbilitySystemComponent* atta
 	strongAbility.SetAbilityActivationDelay(0.f);
 	strongAbility.SetAbilityPriority(1);
 	strongAbility.SetAbilityWeight(3);
+
+	cancelAbility.SetGameplayAbilityHandle(cancelAbilityHandle);
+	cancelAbility.SetAbilityActivationDelay(0.f);
+	cancelAbility.SetAbilityPriority(3);
+	cancelAbility.SetAbilityWeight(0);
+}
+
+void UHIComboManagerComponent::EnqueueAbility(HIComboAbility& comboAbility)
+{
+	comboQueue->Enqueue(comboAbility);
+}
+
+void UHIComboManagerComponent::ResetComboAndEnqueueAbility(HIComboAbility& comboAbility)
+{
+	comboQueue->Empty();
+	comboQueue->Enqueue(comboAbility);
 }
 
 void UHIComboManagerComponent::EnqueueBasicAbility()
 {
-	comboQueue->Enqueue(basicAbility);
+	EnqueueAbility(basicAbility);
 }
 
 void UHIComboManagerComponent::EnqueueStrongAbility()
 {
-	comboQueue->Enqueue(strongAbility);
+	EnqueueAbility(strongAbility);
+}
+
+void UHIComboManagerComponent::EnqueueCancelAbility()
+{
+	ResetComboAndEnqueueAbility(cancelAbility);
 }
 
 void UHIComboManagerComponent::OnComboAbilityActivated(UGameplayAbility* launchedAbility)

@@ -8,7 +8,7 @@
 /**
  * 
  */
-class HIComboAbility 
+class HIComboAbility
 {
 
 public:
@@ -28,7 +28,6 @@ private:
 	float abilityActivationDelay;
 
 public:
-
 #pragma region GETTERS
 
 	const unsigned int GetComboAbilityID() const;

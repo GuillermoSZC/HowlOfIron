@@ -11,7 +11,6 @@
 #include <Components/InputComponent.h>
 #include "HIComboManagerComponent.generated.h"
 
-
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class HOWLOFIRON_API UHIComboManagerComponent : public UActorComponent
 {
@@ -29,14 +28,21 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UHIComboQueue* comboQueue;
 
+	const int MAX_WEIGHT = 3;
+	const float QUEUE_RESET_COOLDOWN = 2.f;
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UGameplayAbility> basicAbilityClass;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UGameplayAbility> strongAbilityClass;
 
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<UGameplayAbility> cancelAbilityClass;
+
 	HIComboAbility basicAbility;
 	HIComboAbility strongAbility;
+	HIComboAbility cancelAbility;
 
 	bool launchingAbility;
 
@@ -52,9 +58,15 @@ public:
 
 	void AttachAbilitySystem(UAbilitySystemComponent* attachedAbilitySystem);
 
+	void EnqueueAbility(HIComboAbility& comboAbility);
+
+	void ResetComboAndEnqueueAbility(HIComboAbility& comboAbility);
+
 	void EnqueueBasicAbility();
 
 	void EnqueueStrongAbility();
+
+	void EnqueueCancelAbility();
 
 	UFUNCTION() 
 	void OnComboAbilityActivated(UGameplayAbility* launchedAbility);

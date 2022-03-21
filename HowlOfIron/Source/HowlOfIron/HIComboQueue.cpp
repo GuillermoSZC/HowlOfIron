@@ -24,7 +24,8 @@ void UHIComboQueue::Update(float deltaTime)
 bool UHIComboQueue::Dequeue(HIComboAbility& ability_)
 {
 	if (abilitiesArray.Num() > 0) {
-		ability_ = abilitiesArray.Pop();
+		ability_ = abilitiesArray[0];
+		abilitiesArray.RemoveAt(0);
 
 		return true;
 	}
@@ -44,12 +45,13 @@ bool UHIComboQueue::Enqueue(const HIComboAbility& _ability)
 	}
 	else {
 
-		if (abilitiesArray.Num() > 0) {
+		if (abilitiesArray.Num() > 0 && _ability.GetAbilityPriority() >= abilitiesArray[abilitiesArray.Num() - 1].GetAbilityPriority()) {
 			abilitiesArray[abilitiesArray.Num() - 1] = _ability;
+			return true;
 		}
-		
+
 	}
-	
+
 	return false;
 }
 
